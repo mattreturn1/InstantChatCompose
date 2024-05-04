@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -91,9 +91,9 @@ fun ChatScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { openAlertDialog.value = true },
-                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
+                Icon(Icons.Default.Send, contentDescription = "Add")
             }
         },
         containerColor = MaterialTheme.colorScheme.background

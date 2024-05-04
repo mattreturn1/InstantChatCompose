@@ -30,9 +30,9 @@ fun MessageItem(
     OutlinedCard(
         colors = CardDefaults.cardColors(
             if (isSelected){
-                MaterialTheme.colorScheme.errorContainer
+                MaterialTheme.colorScheme.tertiaryContainer
             }else{
-                MaterialTheme.colorScheme.primaryContainer
+                MaterialTheme.colorScheme.secondaryContainer
             }
         ),
         border = BorderStroke(0.dp, Color.Transparent),
@@ -63,7 +63,7 @@ fun MessageItem(
                                 lineHeight = 20.sp
                             ),
                             text = "$messageText",
-                            color = MaterialTheme.colorScheme.secondary
+                            color = MaterialTheme.colorScheme.primary
                         )
                         Text(
                             style = MaterialTheme.typography.titleMedium.copy(

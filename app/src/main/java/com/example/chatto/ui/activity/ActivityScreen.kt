@@ -1,5 +1,7 @@
 package com.example.chatto.ui.activity
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -28,6 +30,7 @@ import com.example.chatto.ui.components.ChatItemsList
 import kotlinx.coroutines.launch
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ActivityScreen(
@@ -51,7 +54,7 @@ fun ActivityScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { openAlertDialog.value = true },
-                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {
                 Icon(Icons.Default.Add, contentDescription = "AddChat")
             }
