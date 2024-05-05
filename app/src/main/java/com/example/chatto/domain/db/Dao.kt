@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 interface Dao {
 
     //DAO Chat
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertChat(chat: DbChat)
 
     @Delete
