@@ -1,8 +1,10 @@
 package com.example.chatto
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
@@ -17,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,12 +33,15 @@ class MainActivity : ComponentActivity() {
                         composable(route = "start") {
                             ActivityScreen(navController = navController)
                         }
-                        composable(route = "chat/{id}") { backStackEntry ->
+                        composable(route = "chat/{id}/{number}") { backStackEntry ->
                             val chatId = backStackEntry.arguments?.getString("id")
+                                ?: throw IllegalStateException("missing id from arguments")
+                            val number = backStackEntry.arguments?.getString("number")
                                 ?: throw IllegalStateException("missing id from arguments")
                             ChatScreen(
                                 navController = navController,
-                                id = chatId
+                                id = chatId,
+                                number = number
                             )
                         }
                     }

@@ -26,7 +26,7 @@ interface Dao {
 
     //DAO Message
     @Transaction
-    @Query("SELECT * FROM chat WHERE number=:numberId")
+    @Query("SELECT * FROM chat WHERE id=:numberId")
     fun getChatWithMessages(numberId: String): Flow<List<ChatWithMessages>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

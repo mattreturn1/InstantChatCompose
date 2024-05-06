@@ -8,23 +8,25 @@ import androidx.room.Relation
 
 @Entity(tableName = "chat")
 data class DbChat(
-    @PrimaryKey val number: String,
+    @PrimaryKey(true) val id: Int = 0,
+    val number: String,
     val date: String?,
 )
 
 @Entity(tableName = "message")
 data class DbMessage(
-    @PrimaryKey(true) val id: Int = 0,
+    @PrimaryKey(true) val messageId: Int = 0,
+    val chatId: Int,
     val date: String?,
-    val owner: String,
-    val text: String?,
+    val sender: String,
+    val text: String,
 )
 
 data class ChatWithMessages(
     @Embedded val chat: DbChat,
     @Relation(
-        parentColumn = "number",
-        entityColumn = "owner"
+        parentColumn = "id",
+        entityColumn = "chatId"
     )
     val messages: List<DbMessage?>?
 )

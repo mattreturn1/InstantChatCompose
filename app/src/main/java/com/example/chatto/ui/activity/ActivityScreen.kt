@@ -83,7 +83,7 @@ fun ActivityScreen(
             val coroutineScope = rememberCoroutineScope()
             ChatItemsList(
                 list = chatListState,
-                onOpenChat = { chat -> navController.navigate("chat/${chat.number}") },
+                onOpenChat = { chat -> navController.navigate("chat/${chat.id}/${chat.number}") },
                 onCloseChat = { coroutineScope.launch { activityViewModel.removeChat(it) } }
             )
         }

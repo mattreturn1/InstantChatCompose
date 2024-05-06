@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.chatto.domain.vo.DbMessage
+import com.example.chatto.ui.components.FakeMessage
 import com.example.chatto.ui.components.MessageDialogView
 import com.example.chatto.ui.components.MessageItemsList
 import kotlinx.coroutines.launch
@@ -44,11 +45,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun ChatScreen(
     id: String,
+    number: String,
     navController: NavHostController,
     chatViewModel: ChatViewModel = hiltViewModel()
 ) {
     val openAlertDialog = remember { mutableStateOf(false) }
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
+
+    val sended = remember { mutableStateOf(false) }
 
     var isInSelectionMode = chatViewModel.isInSelectionMode.value
     val selectedItems = remember {
@@ -82,7 +86,7 @@ fun ChatScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = id
+                            text = number
                         )
                     }
                 )
@@ -106,9 +110,11 @@ fun ChatScreen(
             if (openAlertDialog.value) {
                 val coroutineScope = rememberCoroutineScope()
                 MessageDialogView(
-                    number = id,
+                    chatId = id,
+                    number = "0000000000",
                     onDismiss = {
                         openAlertDialog.value = false
+                        sended.value = true
                     },
                     onAdd = {
                         coroutineScope.launch {
@@ -116,6 +122,15 @@ fun ChatScreen(
                         }
                     }
                 )
+            }
+            if (sended.value) {
+                val coroutineScope = rememberCoroutineScope()
+                FakeMessage(chatId = id, number = number) {
+                    coroutineScope.launch {
+                        chatViewModel.addMessage(it)
+                    }
+                    sended.value = false
+                }
             }
             MessageItemsList(
                 isInSelectionMode = isInSelectionMode,

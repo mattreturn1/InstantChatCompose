@@ -32,9 +32,11 @@ import java.time.format.DateTimeFormatter
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MessageDialogView(
+    chatId: String,
     number: String,
     onDismiss: () -> Unit,
     onAdd: (DbMessage) -> Unit
+
 ) {
     var text by remember { mutableStateOf("") }
     val date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
@@ -74,7 +76,7 @@ fun MessageDialogView(
                     Button(
                         onClick = {
                             onDismiss()
-                            onAdd(DbMessage(0, date, number, text))
+                            onAdd(DbMessage(0, chatId.toInt(), date, number, text))
                         },
                         Modifier
                             .fillMaxWidth()

@@ -91,8 +91,8 @@ fun ChatDialogView(
                             .weight(1f),
                         onClick = {
                             onDismiss()
-                            if (isValidText(number) && !chatList.contains(DbChat(number, date))) {
-                                onAdd(DbChat(number, date))
+                            if (isValidText(number) && chatList.none { dbChat -> dbChat.number == number }) {
+                                onAdd(DbChat(0, number, date))
                             }
                         }
                     ) {
@@ -105,5 +105,5 @@ fun ChatDialogView(
 }
 
 fun isValidText(number: String): Boolean {
-    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+"))
+    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[1-9]+"))
 }
