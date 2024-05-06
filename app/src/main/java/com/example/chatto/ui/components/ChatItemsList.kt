@@ -19,7 +19,11 @@ fun ChatItemsList(
     onOpenChat: (DbChat) -> Unit,
     onCloseChat: (DbChat) -> Unit,
 ) {
-    LazyColumn(modifier = modifier, reverseLayout = true, verticalArrangement = Arrangement.spacedBy(10.dp)) {
+    LazyColumn(
+        modifier = modifier,
+        reverseLayout = true,
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
         items(
             items = list
         ) { chat ->

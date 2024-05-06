@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -28,22 +27,22 @@ fun MessageItem(
     modifier: Modifier,
     messageText: String?,
     messageDate: String?,
-    isSelected : Boolean,
+    isSelected: Boolean,
     isMine: Boolean,
 ) {
 
     Row {
-        if (!isMine){
+        if (!isMine) {
             Spacer(modifier = Modifier.size(40.dp))
         }
         OutlinedCard(
             colors = CardDefaults.cardColors(
-                if (isSelected){
+                if (isSelected) {
                     MaterialTheme.colorScheme.onSecondaryContainer
-                }else{
-                    if (isMine){
+                } else {
+                    if (isMine) {
                         MaterialTheme.colorScheme.secondaryContainer
-                    }else{
+                    } else {
                         MaterialTheme.colorScheme.tertiaryContainer
                     }
                 }
