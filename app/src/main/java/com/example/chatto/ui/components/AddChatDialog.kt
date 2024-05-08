@@ -105,5 +105,5 @@ fun ChatDialogView(
 }
 
 fun isValidText(number: String): Boolean {
-    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[1-9]+"))
+    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+")) && number!="0000000000"
 }
