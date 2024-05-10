@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -30,62 +28,56 @@ fun MessageItem(
     isSelected: Boolean,
     isMine: Boolean,
 ) {
-
-    Row {
-        if (!isMine) {
-            Spacer(modifier = Modifier.size(40.dp))
-        }
-        OutlinedCard(
-            colors = CardDefaults.cardColors(
-                if (isSelected) {
-                    MaterialTheme.colorScheme.onSecondaryContainer
+    OutlinedCard(
+        colors = CardDefaults.cardColors(
+            if (isSelected) {
+                MaterialTheme.colorScheme.onSecondaryContainer
+            } else {
+                if (isMine) {
+                    MaterialTheme.colorScheme.secondaryContainer
                 } else {
-                    if (isMine) {
-                        MaterialTheme.colorScheme.secondaryContainer
-                    } else {
-                        MaterialTheme.colorScheme.tertiaryContainer
-                    }
+                    MaterialTheme.colorScheme.tertiaryContainer
                 }
-            ),
-            border = BorderStroke(0.dp, Color.Transparent),
-            modifier = modifier
+            }
+        ),
+        border = BorderStroke(0.dp, Color.Transparent),
+        modifier = modifier
 
-        ) {
-            Box(
-                modifier = Modifier.background(
-                    Brush.verticalGradient(
-                        Pair(0f, Color.Transparent),
-                        Pair(0.9f, Color.Transparent),
-                        Pair(1f, MaterialTheme.colorScheme.primary)
-                    )
+    ) {
+        Box(
+            modifier = Modifier.background(
+                Brush.verticalGradient(
+                    Pair(0f, Color.Transparent),
+                    Pair(0.9f, Color.Transparent),
+                    Pair(1f, MaterialTheme.colorScheme.primary)
                 )
-            ) {
-                Column(Modifier.padding(vertical = 16.dp)) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
+            )
+        ) {
+            Column(Modifier.padding(vertical = 16.dp)) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Column(
+                        modifier = Modifier.weight(1f)
                     ) {
 
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-
-                            Text(
-                                style = MaterialTheme.typography.titleLarge.copy(
-                                    lineHeight = 20.sp
-                                ),
-                                text = "$messageText",
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                            Text(
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    lineHeight = 20.sp
-                                ),
-                                text = "$messageDate",
-                                color = MaterialTheme.colorScheme.secondary
-                            )
-                        }
+                        Text(
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                lineHeight = 20.sp
+                            ),
+                            text = "$messageText",
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                lineHeight = 20.sp
+                            ),
+                            text = "$messageDate",
+                            color = MaterialTheme.colorScheme.secondary
+                        )
                     }
                 }
             }

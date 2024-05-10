@@ -52,7 +52,7 @@ fun ChatScreen(
     val openAlertDialog = remember { mutableStateOf(false) }
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
 
-    val sended = remember { mutableStateOf(false) }
+    val sent = remember { mutableStateOf(false) }
 
     var isInSelectionMode = chatViewModel.isInSelectionMode.value
     val selectedItems = remember {
@@ -114,7 +114,7 @@ fun ChatScreen(
                     number = "0000000000",
                     onDismiss = {
                         openAlertDialog.value = false
-                        sended.value = true
+                        sent.value = true
                     },
                     onAdd = {
                         coroutineScope.launch {
@@ -123,13 +123,13 @@ fun ChatScreen(
                     }
                 )
             }
-            if (sended.value) {
+            if (sent.value) {
                 val coroutineScope = rememberCoroutineScope()
                 FakeMessage(chatId = id, number = number) {
                     coroutineScope.launch {
                         chatViewModel.addMessage(it)
                     }
-                    sended.value = false
+                    sent.value = false
                 }
             }
             MessageItemsList(

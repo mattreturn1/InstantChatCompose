@@ -30,12 +30,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.chatto.R
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -111,8 +108,7 @@ fun ChatItem(
         }
     }
 }
-
-@RequiresApi(Build.VERSION_CODES.O)
+/*@RequiresApi(Build.VERSION_CODES.O)
 fun formatter(date: String?): String? {
     val formatterDate = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     val formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss")
@@ -122,16 +118,5 @@ fun formatter(date: String?): String? {
         return LocalDateTime.now().format(formatterTime)
     }
     return LocalDateTime.now().format(formatterDate)
-}
+}*/
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Preview
-@Composable
-fun PreviewChatItem() {
-    ChatItem(
-        chatNumber = "33333333",
-        chatDate = "12-02-23",
-        onOpenChat = {},
-        onClose = {}
-    )
-}

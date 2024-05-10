@@ -61,6 +61,7 @@ fun MessageDialogView(
                     value = text,
                     onValueChange = { text = it },
                     modifier = Modifier.padding(8.dp),
+                    isError = text.isEmpty()
                 )
                 Row {
                     OutlinedButton(
@@ -78,10 +79,11 @@ fun MessageDialogView(
                             onDismiss()
                             onAdd(DbMessage(0, chatId.toInt(), date, number, text))
                         },
-                        Modifier
+                        modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
-                            .weight(1F)
+                            .weight(1f),
+                        enabled = text.isNotEmpty()
                     ) {
                         Text(text = "Send")
                     }
