@@ -69,9 +69,9 @@ fun ChatItem(
                     Box {
                         Image(
                             modifier = Modifier
-                                .size(35.dp)
+                                .size(50.dp)
                                 .clip(CircleShape),
-                            painter = painterResource(id = R.drawable.ic_action_name),
+                            painter = painterResource(id = R.drawable.avatar),
                             contentDescription = "avatar"
                         )
                     }
