@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.chatto.R
-
+import kotlin.random.Random
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -68,11 +68,18 @@ fun ChatItem(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box {
+
                         Image(
                             modifier = Modifier
                                 .size(50.dp)
                                 .clip(CircleShape),
-                            painter = painterResource(id = R.drawable.avatar),
+                            painter = when (Random.nextInt(0,3)) {
+                                0 -> painterResource(id = R.drawable._0491849)
+                                1 -> painterResource(id = R.drawable._0491830)
+                                else -> {
+                                    painterResource(id = R.drawable._0496275)
+                                }
+                            },
                             contentDescription = "avatar"
                         )
                     }
