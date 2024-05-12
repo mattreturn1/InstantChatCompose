@@ -1,6 +1,5 @@
 package com.example.chatto.domain.vo
 
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
