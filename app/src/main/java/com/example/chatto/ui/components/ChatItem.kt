@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.example.chatto.R
 
 
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatItem(
@@ -84,18 +85,20 @@ fun ChatItem(
                             ),
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
-                            text = "$chatNumber",
+                            text = "+39 $chatNumber",
                             color = MaterialTheme.colorScheme.primary
                         )
-                        Text(
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                lineHeight = 20.sp
-                            ),
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            text = "$chatDate",
-                            color = MaterialTheme.colorScheme.secondary
-                        )
+                        formatter(chatDate)?.let {
+                            Text(
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    lineHeight = 20.sp
+                                ),
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                text = "Created: $it",
+                                color = MaterialTheme.colorScheme.secondary
+                            )
+                        }
                     }
                     IconButton(
                         onClick = onClose,
@@ -108,15 +111,5 @@ fun ChatItem(
         }
     }
 }
-/*@RequiresApi(Build.VERSION_CODES.O)
-fun formatter(date: String?): String? {
-    val formatterDate = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-    val formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss")
-    if (date != null && date.substring(0, 10) == LocalDateTime.now().toLocalDate()
-            .format(formatterDate)
-    ) {
-        return LocalDateTime.now().format(formatterTime)
-    }
-    return LocalDateTime.now().format(formatterDate)
-}*/
+
 

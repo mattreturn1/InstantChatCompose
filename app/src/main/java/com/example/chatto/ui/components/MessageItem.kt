@@ -1,5 +1,7 @@
 package com.example.chatto.ui.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MessageItem(
     modifier: Modifier,
@@ -71,13 +74,15 @@ fun MessageItem(
                             text = "$messageText",
                             color = MaterialTheme.colorScheme.primary
                         )
-                        Text(
-                            style = MaterialTheme.typography.titleMedium.copy(
-                                lineHeight = 20.sp
-                            ),
-                            text = "$messageDate",
-                            color = MaterialTheme.colorScheme.secondary
-                        )
+                        formatter(messageDate)?.let {
+                            Text(
+                                style = MaterialTheme.typography.titleMedium.copy(
+                                    lineHeight = 20.sp
+                                ),
+                                text = it,
+                                color = MaterialTheme.colorScheme.secondary
+                            )
+                        }
                     }
                 }
             }
