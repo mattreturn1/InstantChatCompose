@@ -21,7 +21,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -32,7 +31,6 @@ import com.example.chatto.domain.vo.DbChat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -53,28 +51,26 @@ fun ChatDialogView(
         ) {
             Column(
                 Modifier
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
             ) {
-
                 Text(
                     text = "Add chat",
                     modifier = Modifier.padding(8.dp),
                     fontSize = 20.sp,
                     color = MaterialTheme.colorScheme.secondary
                 )
-
                 OutlinedTextField(
                     value = number,
                     onValueChange = { input ->
                         number = input
                     },
+                    prefix = { Text("+39") },
                     modifier = Modifier.padding(8.dp),
                     label = { Text("Cell-Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     visualTransformation = VisualTransformation.None,
                     isError = !isValidText(number)
                 )
-
                 Row {
                     OutlinedButton(
                         onClick = { onDismiss() },
