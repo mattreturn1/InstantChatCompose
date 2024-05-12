@@ -30,6 +30,7 @@ fun ChatItemsList(
             ChatItem(
                 chatNumber = chat.number,
                 chatDate = chat.date,
+                chatAvatar = chat.avatar,
                 onOpenChat = {
                     onOpenChat(chat)
                 },

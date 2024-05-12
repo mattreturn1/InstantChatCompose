@@ -1,5 +1,6 @@
 package com.example.chatto.domain.vo
 
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,6 +12,7 @@ data class DbChat(
     @PrimaryKey(true) val id: Int = 0,
     val number: String,
     val date: String?,
+    val avatar: Int,
 )
 
 @Entity(tableName = "message")

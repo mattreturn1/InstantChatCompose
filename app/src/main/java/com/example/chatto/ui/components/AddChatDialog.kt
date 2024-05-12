@@ -27,9 +27,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.example.chatto.R
 import com.example.chatto.domain.vo.DbChat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.random.Random
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -91,7 +93,18 @@ fun ChatDialogView(
                             .weight(1f),
                         onClick = {
                             onDismiss()
-                            onAdd(DbChat(0, number, date))
+                            onAdd(
+                                DbChat(
+                                    0, number, date,
+                                    when (Random.nextInt(0, 3)) {
+                                        0 -> R.drawable._0491849
+                                        1 -> R.drawable._0491830
+                                        else -> {
+                                            R.drawable._0496275
+                                        }
+                                    },
+                                )
+                            )
                         },
                         enabled = isValidText(number) && chatList.none { dbChat -> dbChat.number == number }
                     ) {
