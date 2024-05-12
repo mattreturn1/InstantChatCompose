@@ -18,6 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -34,7 +37,7 @@ fun MessageItem(
     OutlinedCard(
         colors = CardDefaults.cardColors(
             if (isSelected) {
-                MaterialTheme.colorScheme.onSecondaryContainer
+                MaterialTheme.colorScheme.errorContainer
             } else {
                 if (isMine) {
                     MaterialTheme.colorScheme.secondaryContainer
@@ -43,7 +46,11 @@ fun MessageItem(
                 }
             }
         ),
-        border = BorderStroke(0.dp, Color.Transparent),
+        border = if (isSelected) {
+            BorderStroke(0.3.dp, Color.Red)
+        } else {
+            BorderStroke(0.dp, Color.Transparent)
+        },
         modifier = modifier
 
     ) {
@@ -52,7 +59,7 @@ fun MessageItem(
                 Brush.verticalGradient(
                     Pair(0f, Color.Transparent),
                     Pair(0.9f, Color.Transparent),
-                    Pair(1f, MaterialTheme.colorScheme.primary)
+                    Pair(1f, MaterialTheme.colorScheme.secondary)
                 )
             )
         ) {
@@ -69,16 +76,24 @@ fun MessageItem(
 
                         Text(
                             style = MaterialTheme.typography.titleLarge.copy(
-                                lineHeight = 20.sp
+                                lineHeight = 28.sp,
+                                fontStyle = FontStyle.Normal,
+                                fontWeight = FontWeight.W400
                             ),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             text = "$messageText",
-                            color = MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         formatter(messageDate)?.let {
                             Text(
                                 style = MaterialTheme.typography.titleMedium.copy(
-                                    lineHeight = 20.sp
+                                    lineHeight = 24.sp,
+                                    fontStyle = FontStyle.Italic,
+                                    fontWeight = FontWeight.Medium
                                 ),
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
                                 text = it,
                                 color = MaterialTheme.colorScheme.secondary
                             )

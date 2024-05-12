@@ -29,6 +29,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,7 +47,7 @@ fun ChatItem(
 ) {
     OutlinedCard(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary,
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
         border = BorderStroke(0.dp, Color.Transparent),
         modifier = Modifier.clickable(onClick = onOpenChat)
@@ -81,17 +83,21 @@ fun ChatItem(
                     ) {
                         Text(
                             style = MaterialTheme.typography.titleLarge.copy(
-                                lineHeight = 28.sp
+                                lineHeight = 28.sp,
+                                fontStyle = FontStyle.Normal,
+                                fontWeight = FontWeight.W500
                             ),
-                            maxLines = 2,
+                            maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                             text = "+39 $chatNumber",
-                            color = MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         formatter(chatDate)?.let {
                             Text(
                                 style = MaterialTheme.typography.titleMedium.copy(
-                                    lineHeight = 20.sp
+                                    lineHeight = 24.sp,
+                                    fontStyle = FontStyle.Italic,
+                                    fontWeight = FontWeight.Medium
                                 ),
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis,
@@ -111,5 +117,6 @@ fun ChatItem(
         }
     }
 }
+
 
 

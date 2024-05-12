@@ -30,7 +30,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.chatto.domain.vo.DbMessage
@@ -86,21 +90,30 @@ fun ChatScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = number
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                lineHeight = 28.sp,
+                                fontStyle = FontStyle.Normal,
+                                fontWeight = FontWeight.W500
+                            ),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            text = number,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
-                    }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primaryContainer)
                 )
             }
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { openAlertDialog.value = true },
-                containerColor = MaterialTheme.colorScheme.primaryContainer
+                containerColor = MaterialTheme.colorScheme.secondaryContainer
             ) {
-                Icon(Icons.Default.Send, contentDescription = "Add")
+                Icon(Icons.Default.Send, contentDescription = "Send")
             }
         },
-        containerColor = MaterialTheme.colorScheme.background
+        containerColor = MaterialTheme.colorScheme.primaryContainer
     ) { innerPadding ->
         Column(
             modifier = Modifier
