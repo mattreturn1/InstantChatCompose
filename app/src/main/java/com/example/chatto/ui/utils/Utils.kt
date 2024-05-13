@@ -5,6 +5,11 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * a formatter function for chat and message date during composition
+ * @param date a string representing the date in format dd.MM.yyyy HH.mm.ss
+ * @return if the creation of the chat/message is today only the time (HH.mm.ss) else only the date (dd.MM.yyyy)
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 fun formatter(date: String): String {
     if (date.substring(0, 10) == LocalDateTime.now().toLocalDate()

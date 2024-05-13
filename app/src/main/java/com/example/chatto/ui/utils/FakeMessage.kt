@@ -8,7 +8,11 @@ import com.example.chatto.domain.vo.FakeMessages
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
+/**
+ * a FakeMessageGenerator, it generates messages for the chatId chat in response to the user
+ * @param chatId chat id
+ * @param number recipient's phone number
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun FakeMessage(
