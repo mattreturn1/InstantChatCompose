@@ -108,7 +108,7 @@ fun ChatScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { openAlertDialog.value = true },
-                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                containerColor = MaterialTheme.colorScheme.secondary
             ) {
                 Icon(Icons.Default.Send, contentDescription = "Send")
             }
