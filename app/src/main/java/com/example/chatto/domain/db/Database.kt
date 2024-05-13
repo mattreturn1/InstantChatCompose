@@ -4,7 +4,9 @@ import androidx.room.RoomDatabase
 import com.example.chatto.domain.vo.DbChat
 import com.example.chatto.domain.vo.DbMessage
 
-
+/**
+ * Room Database
+ */
 @androidx.room.Database(
     entities = [DbChat::class, DbMessage::class], version = 1
 )

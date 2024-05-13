@@ -1,5 +1,8 @@
 package com.example.chatto.domain.vo
 
+/**
+ * A list of fake messages to simulate the recipient's response
+ */
 val FakeMessages = listOf(
     "ehi",
     "ok",
@@ -10,7 +13,7 @@ val FakeMessages = listOf(
     "sorry, but you're wrong",
     "i don't believe it",
     "sure, why not",
-    "are you kidding me!",
+    "are you kidding me?",
     "make sure about it",
     "i like it",
     "i love it",

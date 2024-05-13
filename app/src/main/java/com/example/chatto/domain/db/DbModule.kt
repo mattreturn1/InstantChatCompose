@@ -9,7 +9,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
+/**
+ * An object DbModule which provides two function:
+ * database: instance of a @Singleton database
+ * dao: for the use of Dao interface
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object DbModule {
