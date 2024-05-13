@@ -1,4 +1,4 @@
-package com.example.chatto.ui.components
+package com.example.chatto.ui.chat.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -21,29 +19,25 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.example.chatto.R
-import com.example.chatto.domain.vo.DbChat
+import com.example.chatto.domain.vo.DbMessage
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.random.Random
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ChatDialogView(
-    chatList: List<DbChat>,
+fun MessageDialogView(
+    chatId: String,
+    number: String,
     onDismiss: () -> Unit,
-    onAdd: (DbChat) -> Unit
+    onAdd: (DbMessage) -> Unit
+
 ) {
-    var number by remember { mutableStateOf("") }
-
-    val date: String =
-        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
-
+    var text by remember { mutableStateOf("") }
+    val date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
     Dialog(onDismissRequest = { onDismiss() }) {
         Card(
             shape = RoundedCornerShape(10.dp),
@@ -53,23 +47,19 @@ fun ChatDialogView(
                 Modifier
                     .background(MaterialTheme.colorScheme.background)
             ) {
+
                 Text(
-                    text = "Add chat",
+                    text = "Write message",
                     modifier = Modifier.padding(8.dp),
                     fontSize = 20.sp,
                     color = MaterialTheme.colorScheme.secondary
                 )
+
                 OutlinedTextField(
-                    value = number,
-                    onValueChange = { input ->
-                        number = input
-                    },
-                    prefix = { Text("+39") },
+                    value = text,
+                    onValueChange = { text = it },
                     modifier = Modifier.padding(8.dp),
-                    label = { Text("Cell-Number") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                    visualTransformation = VisualTransformation.None,
-                    isError = !isValidText(number)
+                    isError = text.isEmpty()
                 )
                 Row {
                     OutlinedButton(
@@ -77,41 +67,26 @@ fun ChatDialogView(
                         Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
-                            .weight(1f)
+                            .weight(1F)
                     ) {
                         Text(text = "Cancel")
                     }
 
-                    Button(
+                    OutlinedButton(
+                        onClick = {
+                            onDismiss()
+                            onAdd(DbMessage(0, chatId.toInt(), date, number, text))
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
                             .weight(1f),
-                        onClick = {
-                            onDismiss()
-                            onAdd(
-                                DbChat(
-                                    0, number, date,
-                                    when (Random.nextInt(0, 3)) {
-                                        0 -> R.drawable._0491849
-                                        1 -> R.drawable._0491830
-                                        else -> {
-                                            R.drawable._0496275
-                                        }
-                                    },
-                                )
-                            )
-                        },
-                        enabled = isValidText(number) && chatList.none { dbChat -> dbChat.number == number }
+                        enabled = text.isNotEmpty()
                     ) {
-                        Text(text = "Add")
+                        Text(text = "Send")
                     }
                 }
             }
         }
     }
-}
-
-fun isValidText(number: String): Boolean {
-    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+")) && number != "0000000000"
 }

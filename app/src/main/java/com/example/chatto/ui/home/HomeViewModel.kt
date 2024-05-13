@@ -1,4 +1,4 @@
-package com.example.chatto.ui.activity
+package com.example.chatto.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class ActivityViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
 

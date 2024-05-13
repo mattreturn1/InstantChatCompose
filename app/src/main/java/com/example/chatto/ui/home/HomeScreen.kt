@@ -1,4 +1,4 @@
-package com.example.chatto.ui.activity
+package com.example.chatto.ui.home
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -28,19 +28,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.chatto.ui.components.ChatDialogView
-import com.example.chatto.ui.components.ChatItemsList
+import com.example.chatto.ui.home.components.ChatDialogView
+import com.example.chatto.ui.home.components.ChatItemsList
 import kotlinx.coroutines.launch
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ActivityScreen(
-    activityViewModel: ActivityViewModel = hiltViewModel(),
+fun HomeScreen(
+    homeViewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-    val chatListState by activityViewModel.chatList.collectAsState(emptyList())
+    val chatListState by homeViewModel.chatList.collectAsState(emptyList())
     val openAlertDialog = remember { mutableStateOf(false) }
 
     Scaffold(
@@ -82,7 +82,7 @@ fun ActivityScreen(
                     },
                     onAdd = {
                         coroutineScope.launch {
-                            activityViewModel.addChat(it)
+                            homeViewModel.addChat(it)
                         }
                     }
                 )
@@ -91,7 +91,7 @@ fun ActivityScreen(
             ChatItemsList(
                 list = chatListState,
                 onOpenChat = { chat -> navController.navigate("chat/${chat.id}/${chat.number}") },
-                onCloseChat = { coroutineScope.launch { activityViewModel.removeChat(it) } }
+                onCloseChat = { coroutineScope.launch { homeViewModel.removeChat(it) } }
             )
         }
     }

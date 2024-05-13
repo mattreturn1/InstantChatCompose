@@ -38,9 +38,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.chatto.domain.vo.DbMessage
-import com.example.chatto.ui.components.FakeMessage
-import com.example.chatto.ui.components.MessageDialogView
-import com.example.chatto.ui.components.MessageItemsList
+import com.example.chatto.ui.chat.components.MessageDialogView
+import com.example.chatto.ui.chat.components.MessageItemsList
+import com.example.chatto.ui.utils.FakeMessage
 import kotlinx.coroutines.launch
 
 
@@ -127,12 +127,12 @@ fun ChatScreen(
                     number = "0000000000",
                     onDismiss = {
                         openAlertDialog.value = false
-                        sent.value = true
                     },
                     onAdd = {
                         coroutineScope.launch {
                             chatViewModel.addMessage(it)
                         }
+                        sent.value = true
                     }
                 )
             }

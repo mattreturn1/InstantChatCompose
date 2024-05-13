@@ -1,4 +1,4 @@
-package com.example.chatto.ui.components
+package com.example.chatto.ui.home.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi

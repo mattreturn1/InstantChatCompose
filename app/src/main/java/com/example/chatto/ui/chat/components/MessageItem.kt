@@ -1,4 +1,4 @@
-package com.example.chatto.ui.components
+package com.example.chatto.ui.chat.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.chatto.ui.utils.formatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)

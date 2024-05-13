@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.chatto.ui.activity.ActivityScreen
+import com.example.chatto.ui.home.HomeScreen
 import com.example.chatto.ui.chat.ChatScreen
 import com.example.chatto.ui.theme.ChattoTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = "start"
                     ) {
                         composable(route = "start") {
-                            ActivityScreen(navController = navController)
+                            HomeScreen(navController = navController)
                         }
                         composable(route = "chat/{id}/{number}") { backStackEntry ->
                             val chatId = backStackEntry.arguments?.getString("id")
