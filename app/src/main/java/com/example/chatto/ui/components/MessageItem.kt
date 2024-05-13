@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun MessageItem(
     modifier: Modifier,
-    messageText: String?,
-    messageDate: String?,
+    messageText: String,
+    messageDate: String,
     isSelected: Boolean,
     isMine: Boolean,
 ) {
@@ -82,22 +82,20 @@ fun MessageItem(
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            text = "$messageText",
+                            text = messageText,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
-                        formatter(messageDate)?.let {
-                            Text(
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    lineHeight = 24.sp,
-                                    fontStyle = FontStyle.Italic,
-                                    fontWeight = FontWeight.Medium
-                                ),
-                                maxLines = 2,
-                                overflow = TextOverflow.Ellipsis,
-                                text = it,
-                                color = MaterialTheme.colorScheme.secondary
-                            )
-                        }
+                        Text(
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                lineHeight = 24.sp,
+                                fontStyle = FontStyle.Italic,
+                                fontWeight = FontWeight.Medium
+                            ),
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            text = formatter(messageDate),
+                            color = MaterialTheme.colorScheme.secondary
+                        )
                     }
                 }
             }

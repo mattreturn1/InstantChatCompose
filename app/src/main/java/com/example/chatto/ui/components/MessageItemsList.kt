@@ -1,5 +1,7 @@
 package com.example.chatto.ui.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +16,7 @@ import com.example.chatto.domain.vo.ChatWithMessages
 import com.example.chatto.domain.vo.DbMessage
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MessageItemsList(

@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.sp
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatItem(
-    chatNumber: String?,
-    chatDate: String?,
+    chatNumber: String,
+    chatDate: String,
     chatAvatar: Int,
     onOpenChat: () -> Unit,
     onClose: () -> Unit
@@ -92,19 +92,17 @@ fun ChatItem(
                             text = "+39 $chatNumber",
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
-                        formatter(chatDate)?.let {
-                            Text(
-                                style = MaterialTheme.typography.titleMedium.copy(
-                                    lineHeight = 24.sp,
-                                    fontStyle = FontStyle.Italic,
-                                    fontWeight = FontWeight.Medium
-                                ),
-                                maxLines = 2,
-                                overflow = TextOverflow.Ellipsis,
-                                text = "Created: $it",
-                                color = MaterialTheme.colorScheme.secondary
-                            )
-                        }
+                        Text(
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                lineHeight = 24.sp,
+                                fontStyle = FontStyle.Italic,
+                                fontWeight = FontWeight.Medium
+                            ),
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
+                            text = "Created: ${formatter(chatDate)}",
+                            color = MaterialTheme.colorScheme.secondary
+                        )
                     }
                     IconButton(
                         onClick = onClose,
