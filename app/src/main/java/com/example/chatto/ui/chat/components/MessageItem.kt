@@ -47,11 +47,7 @@ fun MessageItem(
                 }
             }
         ),
-        border = if (isSelected) {
-            BorderStroke(0.3.dp, Color.Red)
-        } else {
-            BorderStroke(0.dp, Color.Transparent)
-        },
+        border = BorderStroke(0.dp, Color.Transparent),
         modifier = modifier
 
     ) {
@@ -60,7 +56,7 @@ fun MessageItem(
                 Brush.verticalGradient(
                     Pair(0f, Color.Transparent),
                     Pair(0.9f, Color.Transparent),
-                    Pair(1f, MaterialTheme.colorScheme.secondary)
+                    Pair(1f, MaterialTheme.colorScheme.tertiary)
                 )
             )
         ) {

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CardDefaults
@@ -51,7 +52,9 @@ fun ChatItem(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
         border = BorderStroke(0.dp, Color.Transparent),
-        modifier = Modifier.clickable(onClick = onOpenChat)
+        modifier = Modifier
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onOpenChat)
 
     ) {
         Box(

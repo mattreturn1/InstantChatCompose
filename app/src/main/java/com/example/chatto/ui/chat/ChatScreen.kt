@@ -97,7 +97,7 @@ fun ChatScreen(
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            text = number,
+                            text = "+39 $number",
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     },

@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.example.chatto.domain.vo.ChatWithMessages
 import com.example.chatto.domain.vo.DbMessage
@@ -39,8 +41,8 @@ fun MessageItemsList(
                 if (message != null) {
                     if (message.sender == "0000000000") {
                         MessageItem(
-                            modifier = Modifier
-                                .padding(start = 5.dp,end = 50.dp)
+                            modifier = modifier
+                                .padding(start = 5.dp,end = 50.dp).clip(RoundedCornerShape(16.dp))
                                 .combinedClickable(
                                     onClick = {
                                         if (isInSelectionMode) {
@@ -71,8 +73,8 @@ fun MessageItemsList(
                         )
                     } else {
                         MessageItem(
-                            modifier = Modifier
-                                .padding(start = 50.dp, end = 5.dp)
+                            modifier = modifier
+                                .padding(start = 50.dp, end = 5.dp).clip(RoundedCornerShape(16.dp))
                                 .combinedClickable(
                                     onClick = {
                                         if (isInSelectionMode) {
