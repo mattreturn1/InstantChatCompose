@@ -3,6 +3,7 @@ package com.example.chatto.ui.home.components
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -21,6 +22,7 @@ fun ChatItemsList(
 ) {
     LazyColumn(
         modifier = modifier,
+        contentPadding = PaddingValues(3.dp),
         reverseLayout = true,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
