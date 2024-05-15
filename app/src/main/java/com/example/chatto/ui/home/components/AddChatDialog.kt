@@ -17,7 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
@@ -38,7 +38,7 @@ fun ChatDialogView(
     onDismiss: () -> Unit,
     onAdd: (DbChat) -> Unit
 ) {
-    var number by remember { mutableStateOf("") }
+    var number by rememberSaveable { mutableStateOf("") }
 
     val date: String =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
