@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.rounded.Close
@@ -100,6 +101,13 @@ fun ChatScreen(
                             text = "+39 $number",
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            navController.popBackStack("start", false)
+                        }) {
+                            Icon(Icons.Filled.ArrowBack, contentDescription = "Close")
+                        }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primaryContainer)
                 )
