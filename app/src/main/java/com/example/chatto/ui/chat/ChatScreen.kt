@@ -104,7 +104,7 @@ fun ChatScreen(
                     },
                     navigationIcon = {
                         IconButton(onClick = {
-                            navController.popBackStack("start", false)
+                            navController.popBackStack("home", false)
                         }) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = "Close")
                         }

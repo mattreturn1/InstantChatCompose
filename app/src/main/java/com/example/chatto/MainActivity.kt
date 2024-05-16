@@ -28,9 +28,9 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,
-                        startDestination = "start"
+                        startDestination = "home"
                     ) {
-                        composable(route = "start") {
+                        composable(route = "home") {
                             HomeScreen(navController = navController)
                         }
                         composable(route = "chat/{id}/{number}") { backStackEntry ->
