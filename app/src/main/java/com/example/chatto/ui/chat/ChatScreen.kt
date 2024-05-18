@@ -25,10 +25,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
@@ -54,19 +54,17 @@ fun ChatScreen(
     navController: NavHostController,
     chatViewModel: ChatViewModel = hiltViewModel()
 ) {
-    val openAlertDialog = remember { mutableStateOf(false) }
+    val openAlertDialog = rememberSaveable { mutableStateOf(false) }
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
 
     val sent = remember { mutableStateOf(false) }
 
-    var isInSelectionMode = chatViewModel.isInSelectionMode.value
-    val selectedItems = remember {
-        mutableStateListOf<DbMessage>()
-    }
+    val isInSelectionMode = chatViewModel.isInSelectionMode.value
+    val selectedItems = chatViewModel.selectedItems
     BackHandler(
         enabled = isInSelectionMode,
     ) {
-        isInSelectionMode = false
+        chatViewModel.updateSelectionMode(false)
         selectedItems.clear()
     }
 
@@ -75,7 +73,7 @@ fun ChatScreen(
         key2 = selectedItems.size,
     ) {
         if (isInSelectionMode && selectedItems.isEmpty()) {
-            isInSelectionMode = false
+            chatViewModel.updateSelectionMode(false)
         }
     }
 
@@ -115,7 +113,12 @@ fun ChatScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { openAlertDialog.value = true },
+                onClick = {
+                    chatViewModel.updateSelectionMode(false)
+                    selectedItems.clear()
+                    openAlertDialog.value = true
+                },
+
                 containerColor = MaterialTheme.colorScheme.secondary
             ) {
                 Icon(Icons.Default.Send, contentDescription = "Send")

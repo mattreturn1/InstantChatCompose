@@ -2,6 +2,7 @@ package com.example.chatto.ui.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import kotlinx.coroutines.flow.Flow
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -18,4 +19,9 @@ fun formatter(date: String): String {
         return date.substring(11)
     }
     return date.substring(0, 10)
+}
+
+class GenericDataMap<T>(private val provider: (String) -> Flow<T>) {
+    private val flowMap = mutableMapOf<String, Flow<T>>()
+    operator fun get(id: String) = flowMap.getOrPut(id) { provider(id) }
 }

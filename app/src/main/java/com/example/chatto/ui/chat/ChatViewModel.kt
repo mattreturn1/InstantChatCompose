@@ -1,13 +1,14 @@
 package com.example.chatto.ui.chat
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.chatto.domain.vo.DbMessage
 import com.example.chatto.repo.ChatRepository
+import com.example.chatto.ui.utils.GenericDataMap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -19,6 +20,8 @@ import javax.inject.Inject
 class ChatViewModel @Inject constructor(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
+
+    val selectedItems = mutableStateListOf<DbMessage>()
 
     val isInSelectionMode = mutableStateOf(false)
     fun updateSelectionMode(value: Boolean) {
@@ -47,7 +50,4 @@ class ChatViewModel @Inject constructor(
     }
 }
 
-class GenericDataMap<T>(private val provider: (String) -> Flow<T>) {
-    private val flowMap = mutableMapOf<String, Flow<T>>()
-    operator fun get(id: String) = flowMap.getOrPut(id) { provider(id) }
-}
+
