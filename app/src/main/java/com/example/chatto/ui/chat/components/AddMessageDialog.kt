@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.chatto.domain.vo.DbMessage
+import com.example.chatto.domain.vo.DbNumber
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -31,7 +32,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun MessageDialogView(
     chatId: String,
-    number: String,
+    senderNumber: DbNumber,
     onDismiss: () -> Unit,
     onAdd: (DbMessage) -> Unit
 
@@ -75,7 +76,7 @@ fun MessageDialogView(
                     OutlinedButton(
                         onClick = {
                             onDismiss()
-                            onAdd(DbMessage(0, chatId.toInt(), date, number, text))
+                            onAdd(DbMessage(0, chatId.toInt(), date, senderNumber, text))
                         },
                         modifier = Modifier
                             .fillMaxWidth()

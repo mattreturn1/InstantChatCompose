@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.chatto.domain.vo.DbMessage
+import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.ui.chat.components.MessageDialogView
 import com.example.chatto.ui.chat.components.MessageItemsList
 import com.example.chatto.ui.utils.FakeMessage
@@ -50,6 +51,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ChatScreen(
     id: String,
+    prefix: String,
     number: String,
     navController: NavHostController,
     chatViewModel: ChatViewModel = hiltViewModel()
@@ -96,7 +98,7 @@ fun ChatScreen(
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            text = "+39 $number",
+                            text = "+$prefix $number",
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     },
@@ -135,7 +137,7 @@ fun ChatScreen(
                 val coroutineScope = rememberCoroutineScope()
                 MessageDialogView(
                     chatId = id,
-                    number = "0000000000",
+                    senderNumber = DbNumber("+39", "0000000000"),
                     onDismiss = {
                         openAlertDialog.value = false
                     },
@@ -149,7 +151,7 @@ fun ChatScreen(
             }
             if (sent.value) {
                 val coroutineScope = rememberCoroutineScope()
-                FakeMessage(chatId = id, number = number) {
+                FakeMessage(chatId = id, number = DbNumber("+39", number)) {
                     coroutineScope.launch {
                         chatViewModel.addMessage(it)
                     }

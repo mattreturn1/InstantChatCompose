@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import com.example.chatto.domain.vo.DbMessage
+import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.domain.vo.FakeMessages
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -17,7 +18,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun FakeMessage(
     chatId: String,
-    number: String,
+    number: DbNumber,
     onAdd: (DbMessage) -> Unit
 ) {
     val text = FakeMessages.random()

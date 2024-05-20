@@ -39,10 +39,11 @@ fun MessageItemsList(
                 val isSelected = selectedItems.contains(message)
 
                 if (message != null) {
-                    if (message.sender == "0000000000") {
+                    if (message.sender.number == "0000000000" && message.sender.prefix == "+39") {
                         MessageItem(
                             modifier = modifier
-                                .padding(start = 5.dp,end = 50.dp).clip(RoundedCornerShape(16.dp))
+                                .padding(start = 5.dp, end = 50.dp)
+                                .clip(RoundedCornerShape(16.dp))
                                 .combinedClickable(
                                     onClick = {
                                         if (isInSelectionMode) {
@@ -74,7 +75,8 @@ fun MessageItemsList(
                     } else {
                         MessageItem(
                             modifier = modifier
-                                .padding(start = 50.dp, end = 5.dp).clip(RoundedCornerShape(16.dp))
+                                .padding(start = 50.dp, end = 5.dp)
+                                .clip(RoundedCornerShape(16.dp))
                                 .combinedClickable(
                                     onClick = {
                                         if (isInSelectionMode) {

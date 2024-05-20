@@ -6,6 +6,16 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 
 /**
+ * Data class to represent a telephone number
+ * @param prefix
+ * @param number
+ */
+data class DbNumber(
+    val prefix: String,
+    val number: String
+)
+
+/**
  * Entity Chat for Room Database
  * @param id the entity chat id
  * @param number the recipient's phone number
@@ -15,10 +25,11 @@ import androidx.room.Relation
 @Entity(tableName = "chat")
 data class DbChat(
     @PrimaryKey(true) val id: Int = 0,
-    val number: String,
+    @Embedded val number: DbNumber,
     val date: String,
     val avatar: Int
 )
+
 /**
  * Entity Message for Room Database
  * @param messageId the entity message id
@@ -32,7 +43,7 @@ data class DbMessage(
     @PrimaryKey(true) val messageId: Int = 0,
     val chatId: Int,
     val date: String,
-    val sender: String,
+    @Embedded val sender: DbNumber,
     val text: String
 )
 

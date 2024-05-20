@@ -90,7 +90,7 @@ fun HomeScreen(
             val coroutineScope = rememberCoroutineScope()
             ChatItemsList(
                 list = chatListState,
-                onOpenChat = { chat -> navController.navigate("chat/${chat.id}/${chat.number}") },
+                onOpenChat = { chat -> navController.navigate("chat/${chat.id}/${chat.number.prefix}/${chat.number.number}") },
                 onCloseChat = { coroutineScope.launch { homeViewModel.removeChat(it) } }
             )
         }

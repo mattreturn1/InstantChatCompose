@@ -21,12 +21,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.chatto.R
 import com.example.chatto.domain.vo.DbChat
+import com.example.chatto.domain.vo.DbNumber
+import com.example.chatto.domain.vo.ValidPrefix
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
@@ -39,6 +40,7 @@ fun ChatDialogView(
     onAdd: (DbChat) -> Unit
 ) {
     var number by rememberSaveable { mutableStateOf("") }
+    var prefix by rememberSaveable { mutableStateOf("") }
 
     val date: String =
         LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
@@ -59,15 +61,25 @@ fun ChatDialogView(
                     color = MaterialTheme.colorScheme.secondary
                 )
                 OutlinedTextField(
+                    value = prefix,
+                    onValueChange = { input ->
+                        prefix = input
+                    },
+                    leadingIcon = { Text(text = "+") },
+                    modifier = Modifier.padding(8.dp),
+                    label = { Text("Prefix") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                    isError = !ValidPrefix.contains(prefix)
+
+                )
+                OutlinedTextField(
                     value = number,
                     onValueChange = { input ->
                         number = input
                     },
-                    prefix = { Text("+39") },
                     modifier = Modifier.padding(8.dp),
                     label = { Text("Cell-Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                    visualTransformation = VisualTransformation.None,
                     isError = !isValidText(number)
                 )
                 Row {
@@ -90,7 +102,7 @@ fun ChatDialogView(
                             onDismiss()
                             onAdd(
                                 DbChat(
-                                    0, number, date,
+                                    0, DbNumber(prefix, number), date,
                                     when (Random.nextInt(0, 3)) {
                                         0 -> R.drawable._0491849
                                         1 -> R.drawable._0491830
@@ -101,7 +113,7 @@ fun ChatDialogView(
                                 )
                             )
                         },
-                        enabled = isValidText(number) && chatList.none { dbChat -> dbChat.number == number }
+                        enabled = ValidPrefix.contains(prefix) && isValidText(number) && chatList.none { dbChat -> (dbChat.number.number == number && dbChat.number.prefix == prefix) }
                     ) {
                         Text(text = "Add")
                     }

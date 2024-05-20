@@ -35,13 +35,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.ui.utils.formatter
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatItem(
-    chatNumber: String,
+    chatNumber: DbNumber,
     chatDate: String,
     chatAvatar: Int,
     onOpenChat: () -> Unit,
@@ -93,7 +94,7 @@ fun ChatItem(
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
-                            text = "+39 $chatNumber",
+                            text = "+" + chatNumber.prefix + " " + chatNumber.number,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Text(

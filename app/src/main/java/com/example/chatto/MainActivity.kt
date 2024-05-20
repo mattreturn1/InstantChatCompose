@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.chatto.ui.home.HomeScreen
 import com.example.chatto.ui.chat.ChatScreen
+import com.example.chatto.ui.home.HomeScreen
 import com.example.chatto.ui.theme.ChattoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,14 +33,17 @@ class MainActivity : ComponentActivity() {
                         composable(route = "home") {
                             HomeScreen(navController = navController)
                         }
-                        composable(route = "chat/{id}/{number}") { backStackEntry ->
+                        composable(route = "chat/{id}/{prefix}/{number}") { backStackEntry ->
                             val chatId = backStackEntry.arguments?.getString("id")
+                                ?: throw IllegalStateException("missing id from arguments")
+                            val prefix = backStackEntry.arguments?.getString("prefix")
                                 ?: throw IllegalStateException("missing id from arguments")
                             val number = backStackEntry.arguments?.getString("number")
                                 ?: throw IllegalStateException("missing id from arguments")
                             ChatScreen(
                                 navController = navController,
                                 id = chatId,
+                                prefix = prefix,
                                 number = number
                             )
                         }
