@@ -23,7 +23,6 @@ fun ChatItemsList(
     LazyColumn(
         modifier = modifier,
         contentPadding = PaddingValues(3.dp),
-        reverseLayout = true,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(
