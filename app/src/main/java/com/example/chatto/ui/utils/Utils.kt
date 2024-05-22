@@ -20,7 +20,10 @@ fun formatter(date: String): String {
     }
     return date.substring(0, 10)
 }
-
+/**
+ * a generic class to map a string in a Flow
+ * @param provider a lambda function to map a String object and a Flow<T>
+ */
 class GenericDataMap<T>(private val provider: (String) -> Flow<T>) {
     private val flowMap = mutableMapOf<String, Flow<T>>()
     operator fun get(id: String) = flowMap.getOrPut(id) { provider(id) }
