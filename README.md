@@ -1,7 +1,7 @@
 # Progetto di Programmazione di Sistemi Embedded 6CFU <br> App di Messaggistica Istantanea - CHATTO
 ## di Mattia Cozza 2032576
 ### Librerie utilizzate
-<p> In questo progetto ho utilizzato il framework Android Jetpack Compose per l'implementazione dell'interfaccia utente, la libreria HILT per l'iniezione delle dipendenze </p>
+<p> In questo progetto ho utilizzato il framework Android Jetpack Compose per l'implementazione dell'interfaccia utente e la libreria HILT per l'iniezione delle dipendenze </p>
 
 ### Scelte implementative
 <p> In aggiunta alla consegna del progetto ho inserito un'activity di Login che permetta all'utente d'inserire il suo numero di telefono al primo avvio dell'app, quindi salvando 
