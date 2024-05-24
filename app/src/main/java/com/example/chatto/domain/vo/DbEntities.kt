@@ -11,8 +11,8 @@ import androidx.room.Relation
  * @param number
  */
 data class DbNumber(
-    val prefix: String,
-    val number: String
+    val prefix: String?,
+    val number: String?
 )
 
 /**
@@ -59,3 +59,14 @@ data class ChatWithMessages(
     )
     val messages: List<DbMessage?>?
 )
+
+/**
+ * Entity Profile to represent a user data
+ * @param number user's phone number
+ */
+@Entity(tableName = "profile")
+data class DbProfile(
+    @PrimaryKey(true) val id: Int = 0,
+    @Embedded val number: DbNumber,
+
+    )

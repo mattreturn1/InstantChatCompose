@@ -11,8 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.chatto.ui.DispatcherScreen
 import com.example.chatto.ui.chat.ChatScreen
 import com.example.chatto.ui.home.HomeScreen
+import com.example.chatto.ui.login.LoginScreen
 import com.example.chatto.ui.theme.ChattoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,9 +28,10 @@ class MainActivity : ComponentActivity() {
             ChattoTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     val navController = rememberNavController()
+
                     NavHost(
                         navController = navController,
-                        startDestination = "home"
+                        startDestination = "dispatcher"
                     ) {
                         composable(route = "home") {
                             HomeScreen(navController = navController)
@@ -46,6 +49,12 @@ class MainActivity : ComponentActivity() {
                                 prefix = prefix,
                                 number = number
                             )
+                        }
+                        composable(route = "login") {
+                            LoginScreen(navController = navController)
+                        }
+                        composable(route = "dispatcher") {
+                            DispatcherScreen(navController = navController)
                         }
                     }
                 }

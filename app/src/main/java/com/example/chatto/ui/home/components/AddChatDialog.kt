@@ -1,6 +1,7 @@
 package com.example.chatto.ui.home.components
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -36,9 +37,11 @@ import kotlin.random.Random
 @Composable
 fun ChatDialogView(
     chatList: List<DbChat>,
+    myProfileNumber: DbNumber,
     onDismiss: () -> Unit,
     onAdd: (DbChat) -> Unit
 ) {
+    Log.i("asd", myProfileNumber.prefix.toString() + myProfileNumber.number.toString())
     var number by rememberSaveable { mutableStateOf("") }
     var prefix by rememberSaveable { mutableStateOf("") }
 
@@ -80,7 +83,7 @@ fun ChatDialogView(
                     modifier = Modifier.padding(8.dp),
                     label = { Text("Cell-Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                    isError = !isValidText(number)
+                    isError = !isValidText(number) || number == myProfileNumber.number
                 )
                 Row {
                     OutlinedButton(
@@ -113,7 +116,14 @@ fun ChatDialogView(
                                 )
                             )
                         },
-                        enabled = ValidPrefix.contains(prefix) && isValidText(number) && chatList.none { dbChat -> (dbChat.number.number == number && dbChat.number.prefix == prefix) }
+                        enabled = if ((prefix == myProfileNumber.prefix) && (number == myProfileNumber.number)) {
+                            false
+                        } else {
+                            (prefix != "") && (ValidPrefix.contains(prefix) && isValidText(number)
+                                    && chatList.none { dbChat ->
+                                (dbChat.number.number == number && dbChat.number.prefix == prefix)
+                            })
+                        }
                     ) {
                         Text(text = "Add")
                     }
@@ -124,5 +134,5 @@ fun ChatDialogView(
 }
 
 fun isValidText(number: String): Boolean {
-    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+")) && number != "0000000000"
+    return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+"))
 }

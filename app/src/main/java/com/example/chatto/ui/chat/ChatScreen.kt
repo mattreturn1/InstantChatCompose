@@ -42,6 +42,7 @@ import com.example.chatto.domain.vo.DbMessage
 import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.ui.chat.components.MessageDialogView
 import com.example.chatto.ui.chat.components.MessageItemsList
+import com.example.chatto.ui.login.LoginViewModel
 import com.example.chatto.ui.utils.FakeMessage
 import kotlinx.coroutines.launch
 
@@ -54,8 +55,10 @@ fun ChatScreen(
     prefix: String,
     number: String,
     navController: NavHostController,
-    chatViewModel: ChatViewModel = hiltViewModel()
-) {
+    chatViewModel: ChatViewModel = hiltViewModel(),
+    loginViewModel: LoginViewModel = hiltViewModel()
+
+    ) {
     val openAlertDialog = rememberSaveable { mutableStateOf(false) }
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
 
@@ -63,6 +66,10 @@ fun ChatScreen(
 
     val isInSelectionMode = chatViewModel.isInSelectionMode.value
     val selectedItems = chatViewModel.selectedItems
+
+    val profile by loginViewModel.profile.collectAsState(initial = emptyList())
+    val myPrefix = profile.firstOrNull()?.number?.prefix
+    val myNumber = profile.firstOrNull()?.number?.number
     BackHandler(
         enabled = isInSelectionMode,
     ) {
@@ -137,7 +144,7 @@ fun ChatScreen(
                 val coroutineScope = rememberCoroutineScope()
                 MessageDialogView(
                     chatId = id,
-                    senderNumber = DbNumber("+39", "0000000000"),
+                    senderNumber = DbNumber(myPrefix, myNumber),
                     onDismiss = {
                         openAlertDialog.value = false
                     },
@@ -151,7 +158,7 @@ fun ChatScreen(
             }
             if (sent.value) {
                 val coroutineScope = rememberCoroutineScope()
-                FakeMessage(chatId = id, number = DbNumber("+39", number)) {
+                FakeMessage(chatId = id, number = DbNumber(prefix, number)) {
                     coroutineScope.launch {
                         chatViewModel.addMessage(it)
                     }
@@ -159,6 +166,7 @@ fun ChatScreen(
                 }
             }
             MessageItemsList(
+                myProfileNumber = DbNumber(myPrefix,myNumber),
                 isInSelectionMode = isInSelectionMode,
                 updateSelectionMode = { chatViewModel.updateSelectionMode(it) },
                 selectedItems = selectedItems,

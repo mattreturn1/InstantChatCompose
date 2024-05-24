@@ -28,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.ui.home.components.ChatDialogView
 import com.example.chatto.ui.home.components.ChatItemsList
+import com.example.chatto.ui.login.LoginViewModel
 import kotlinx.coroutines.launch
 
 
@@ -37,19 +39,23 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    loginViewModel: LoginViewModel = hiltViewModel(),
     homeViewModel: HomeViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
     val chatListState by homeViewModel.chatList.collectAsState(emptyList())
     val openAlertDialog = rememberSaveable { mutableStateOf(false) }
 
+    val profile by loginViewModel.profile.collectAsState(initial = emptyList())
+    val myPrefix = profile.firstOrNull()?.number?.prefix
+    val myNumber = profile.firstOrNull()?.number?.number
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
                         textAlign = TextAlign.Center,
-                        text = "Chatto",
+                        text = "Chatto +$myPrefix $myNumber",
                         fontWeight = FontWeight.W500,
                         fontStyle = FontStyle.Normal,
                         lineHeight = 24.sp,
@@ -77,6 +83,7 @@ fun HomeScreen(
                 val coroutineScope = rememberCoroutineScope()
                 ChatDialogView(
                     chatList = chatListState,
+                    myProfileNumber = DbNumber(myPrefix, myNumber),
                     onDismiss = {
                         openAlertDialog.value = false
                     },

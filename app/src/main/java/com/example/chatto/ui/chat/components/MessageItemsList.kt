@@ -16,12 +16,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import com.example.chatto.domain.vo.ChatWithMessages
 import com.example.chatto.domain.vo.DbMessage
+import com.example.chatto.domain.vo.DbNumber
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MessageItemsList(
+    myProfileNumber: DbNumber,
     isInSelectionMode: Boolean,
     selectedItems: SnapshotStateList<DbMessage>,
     modifier: Modifier = Modifier,
@@ -39,7 +41,7 @@ fun MessageItemsList(
                 val isSelected = selectedItems.contains(message)
 
                 if (message != null) {
-                    if (message.sender.number == "0000000000" && message.sender.prefix == "+39") {
+                    if (message.sender.number == myProfileNumber.number && message.sender.prefix == myProfileNumber.prefix) {
                         MessageItem(
                             modifier = modifier
                                 .padding(start = 5.dp, end = 50.dp)

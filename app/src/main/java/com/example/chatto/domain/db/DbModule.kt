@@ -11,8 +11,8 @@ import javax.inject.Singleton
 
 /**
  * An object DbModule which provides two function:
- * database: instance of a @Singleton database
- * dao: for the use of Dao interface
+ * database: return the instance of a @Singleton database
+ * dao: for using the Dao's interface
  */
 @Module
 @InstallIn(SingletonComponent::class)
