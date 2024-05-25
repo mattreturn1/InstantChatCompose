@@ -3,10 +3,12 @@ package com.example.chatto.ui.utils
 import android.content.Context
 import android.content.SharedPreferences
 
-
+/**
+ * this class manages the preferences file, in particular to save and get the preferences
+ */
 class PreferencesManager(context: Context) {
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
 
     fun saveData(key: String, value: String) {
         val editor = sharedPreferences.edit()

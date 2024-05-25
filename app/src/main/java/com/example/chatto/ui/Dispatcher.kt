@@ -7,6 +7,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import com.example.chatto.ui.utils.PreferencesManager
 
+/**
+ * this function observes the value from preferences file, in this case if the user have already inserted
+ * his valid phone number, if in the file is present the string user-logged the navController goes to home
+ * activity otherwise the navController goes to login activity
+ */
 @Composable
 fun Dispatcher(
     navController: NavHostController
