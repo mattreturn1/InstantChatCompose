@@ -52,15 +52,26 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
+                modifier = Modifier.padding(bottom = 10.dp),
                 title = {
-                    Text(
-                        textAlign = TextAlign.Center,
-                        text = "Chatto +$myPrefix $myNumber",
-                        fontWeight = FontWeight.W500,
-                        fontStyle = FontStyle.Normal,
-                        lineHeight = 24.sp,
-                        fontSize = 28.sp
-                    )
+                    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                        Text(
+                            textAlign = TextAlign.Start,
+                            text = "Chatto",
+                            fontWeight = FontWeight.W500,
+                            fontStyle = FontStyle.Normal,
+                            lineHeight = 24.sp,
+                            fontSize = 28.sp
+                        )
+                        Text(
+                            textAlign = TextAlign.Start,
+                            text = "Me: +$myPrefix $myNumber",
+                            fontWeight = FontWeight.W500,
+                            fontStyle = FontStyle.Normal,
+                            lineHeight = 13.sp,
+                            fontSize = 15.sp
+                        )
+                    }
                 }
             )
         },
