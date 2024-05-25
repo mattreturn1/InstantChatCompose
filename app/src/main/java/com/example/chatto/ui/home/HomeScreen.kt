@@ -7,13 +7,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -51,10 +51,9 @@ fun HomeScreen(
     val myNumber = profile.firstOrNull()?.number?.number
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                modifier = Modifier.padding(bottom = 10.dp),
+            TopAppBar(
                 title = {
-                    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(
                             textAlign = TextAlign.Start,
                             text = "Chatto",

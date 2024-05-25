@@ -100,7 +100,7 @@ fun LoginScreen(
                     ),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    text = "so please enter you phone number",
+                    text = "enter you phone number",
                     color = MaterialTheme.colorScheme.secondary
                 )
                 OutlinedTextField(
