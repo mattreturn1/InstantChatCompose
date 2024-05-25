@@ -12,7 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
+/**
+ * a repository interface to manage DbChat and DbMessage objects
+ */
 interface ChatRepository {
 
     fun getAllChat(): Flow<List<DbChat>>
@@ -29,6 +31,9 @@ interface ChatRepository {
     fun getChatWithMessages(id: String): Flow<List<ChatWithMessages>>
 }
 
+/**
+ * this class will provide a @Singleton implementation of a ChatRepository
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class TasksModule {
@@ -36,7 +41,9 @@ abstract class TasksModule {
     @Singleton
     abstract fun provideTaskRepository(chatRepositoryImpl: ChatRepositoryImpl): ChatRepository
 }
-
+/**
+ * a repository implementation to manage DbChat and DbMessage objects
+ */
 @Singleton
 class ChatRepositoryImpl @Inject constructor(
     private val dao: Dao

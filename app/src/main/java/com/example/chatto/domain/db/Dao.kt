@@ -70,7 +70,6 @@ interface Dao {
     /**
      * to delete a profile in the database
      * @param profile the user profile
-     *
      */
     @Delete
     suspend fun deleteDbProfile(profile: DbProfile)

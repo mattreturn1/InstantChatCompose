@@ -18,7 +18,15 @@ import com.example.chatto.ui.login.LoginScreen
 import com.example.chatto.ui.theme.ChattoTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
+/**
+ * in class MainActivity there is a NavController which controls the navigation between app's activities
+ * in particular it's declared a navigation graph composed by:
+ * - a dispatcher route, to decide if show the login screen or not, if this is the user's first access to the app
+ * - a login route
+ * - a home route
+ * - a chat route with argument id to identify the correct chat
+ * and arguments prefix and number, which must have passed to Chat activity
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)

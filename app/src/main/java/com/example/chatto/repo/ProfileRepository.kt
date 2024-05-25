@@ -10,7 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
+/**
+ * a repository interface to manage DbProfile objects
+ */
 interface ProfileRepository {
 
     fun getDbProfile(): Flow<List<DbProfile>>
@@ -20,7 +22,9 @@ interface ProfileRepository {
     suspend fun deleteDbProfile(dbProfile: DbProfile)
 
 }
-
+/**
+ * this class will provide a @Singleton implementation of a ProfileRepository
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class ProfileModule {
@@ -28,7 +32,9 @@ abstract class ProfileModule {
     @Singleton
     abstract fun provideTaskRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
 }
-
+/**
+ * a repository implementation to manage DbProfile objects
+ */
 @Singleton
 class ProfileRepositoryImpl @Inject constructor(
     private val dao: Dao
