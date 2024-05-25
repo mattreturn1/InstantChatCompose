@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-
+/**
+ * the loginViewModel annotated with @HiltViewModel manages the operation on DbProfile object
+ */
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
