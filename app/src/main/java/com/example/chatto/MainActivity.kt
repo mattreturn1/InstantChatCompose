@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.chatto.ui.DispatcherScreen
+import com.example.chatto.ui.Dispatcher
 import com.example.chatto.ui.chat.ChatScreen
 import com.example.chatto.ui.home.HomeScreen
 import com.example.chatto.ui.login.LoginScreen
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                             LoginScreen(navController = navController)
                         }
                         composable(route = "dispatcher") {
-                            DispatcherScreen(navController = navController)
+                            Dispatcher(navController = navController)
                         }
                     }
                 }

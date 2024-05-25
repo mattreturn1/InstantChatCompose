@@ -8,14 +8,14 @@ import androidx.navigation.NavHostController
 import com.example.chatto.ui.utils.PreferencesManager
 
 @Composable
-fun DispatcherScreen(
+fun Dispatcher(
     navController: NavHostController
 ) {
     val context = LocalContext.current
     val preferencesManager = remember { PreferencesManager(context) }
     val data = remember { mutableStateOf(preferencesManager.getData("LOGGED", "")) }
     if (data.value == "user-logged") {
-        navController.navigate("home")
+        navController.navigate("home"){ popUpTo(0) }
     } else {
         navController.navigate("login")
     }

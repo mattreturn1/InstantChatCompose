@@ -136,7 +136,7 @@ fun LoginScreen(
                             data.value = "user-logged"
 
                         }
-                        navController.popBackStack("dispatcher", inclusive = false)
+                        navController.popBackStack("dispatcher", inclusive = true)
                     },
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
