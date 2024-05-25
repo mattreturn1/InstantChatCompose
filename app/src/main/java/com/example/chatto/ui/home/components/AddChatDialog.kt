@@ -107,10 +107,10 @@ fun ChatDialogView(
                                 DbChat(
                                     0, DbNumber(prefix, number), date,
                                     when (Random.nextInt(0, 3)) {
-                                        0 -> R.drawable._0491849
-                                        1 -> R.drawable._0491830
+                                        0 -> R.drawable.avatar3
+                                        1 -> R.drawable.avatar1
                                         else -> {
-                                            R.drawable._0496275
+                                            R.drawable.avatar2
                                         }
                                     },
                                 )
