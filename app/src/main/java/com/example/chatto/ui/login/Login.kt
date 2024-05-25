@@ -41,7 +41,12 @@ import com.example.chatto.ui.login.components.MainCover
 import com.example.chatto.ui.utils.PreferencesManager
 import kotlinx.coroutines.launch
 
-
+/**
+ * this Screen contains the Login user interface which consist of:
+ * -a background image
+ * -two Outlined Text Field to insert the prefix and the number of the user
+ * -an outlined button to confirm data inserted
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LoginScreen(
@@ -125,6 +130,12 @@ fun LoginScreen(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     isError = !isValidText(number)
                 )
+                /**
+                 * when the user click the button a coroutine will be launched to add
+                 * a new user DbProfile in the database, then in preferences file there will be
+                 * a user-logged value for the next access to the app, then the navigation controller
+                 * will return to the dispatcher
+                 */
                 OutlinedButton(
                     modifier = Modifier
                         .padding(8.dp),

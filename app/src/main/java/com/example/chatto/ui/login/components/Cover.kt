@@ -16,6 +16,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.chatto.R
 
+/**
+ * this component is designed to contain an image in background and the content over it
+ */
 @Composable
 fun MainCover(
     modifier: Modifier = Modifier,
