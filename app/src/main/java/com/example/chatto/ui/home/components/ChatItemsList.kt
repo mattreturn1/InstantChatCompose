@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.chatto.domain.vo.DbChat
 
-
+/**
+ * a chat items list to contain all ChatItems created
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatItemsList(

@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-
+/**
+ * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat objects
+ */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val chatRepository: ChatRepository

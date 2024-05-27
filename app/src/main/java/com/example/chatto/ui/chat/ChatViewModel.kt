@@ -15,19 +15,30 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-
+/**
+ * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat objects
+ */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
 
+    /**
+     * to contain the selected items in selection mode
+     */
     val selectedItems = mutableStateListOf<DbMessage>()
 
+    /**
+     * a state of the selection mode
+     */
     val isInSelectionMode = mutableStateOf(false)
     fun updateSelectionMode(value: Boolean) {
         isInSelectionMode.value = value
     }
 
+    /**
+     * to get the chat with its all messages specified by its id
+     */
     val messageList = GenericDataMap { id ->
         chatRepository.getChatWithMessages(id)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList())

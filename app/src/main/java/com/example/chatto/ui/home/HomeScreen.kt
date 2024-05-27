@@ -34,7 +34,14 @@ import com.example.chatto.ui.home.components.ChatItemsList
 import com.example.chatto.ui.login.LoginViewModel
 import kotlinx.coroutines.launch
 
-
+/**
+ * this Screen contains the Home user interface whit all chats owned to the user, which consist of
+ * a Scaffold with a TopAppBar with the user profile information, a floatingActionButton to insert
+ * a new chat, this button invokes a ChatDialogView to insert the prefix and the number of the recipient and
+ * a ChatList which contains all user's chats order by creation date (the most recent on top),
+ * if the user click on a chat the navController navigate to ChatScreen of the clicked chat otherwise
+ * if the user click on the trash icon in the chat, the latter is removed
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

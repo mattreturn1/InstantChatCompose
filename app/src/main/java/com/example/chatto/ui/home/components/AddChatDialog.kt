@@ -1,7 +1,6 @@
 package com.example.chatto.ui.home.components
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -33,6 +32,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
+/**
+ * a dialog to insert a new chat in ChatItemsList, a Card composed by two OutlinedTextField
+ * to insert the prefix and the number of the recipient and two buttons, one to Cancel the operation and
+ * the other to Add the chat
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatDialogView(
@@ -41,7 +45,6 @@ fun ChatDialogView(
     onDismiss: () -> Unit,
     onAdd: (DbChat) -> Unit
 ) {
-    Log.i("asd", myProfileNumber.prefix.toString() + myProfileNumber.number.toString())
     var number by rememberSaveable { mutableStateOf("") }
     var prefix by rememberSaveable { mutableStateOf("") }
 
@@ -96,6 +99,13 @@ fun ChatDialogView(
                         Text(text = "Cancel")
                     }
 
+                    /**
+                     * when the user add a new chat it's created a new object DbChat, with a random avatar
+                     * the button is enabled only if the recipient's complete number
+                     * is different from user's complete number
+                     * and prefix and number are valid and the complete number is not already added
+                     * in the chat list
+                     */
                     OutlinedButton(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -133,6 +143,9 @@ fun ChatDialogView(
     }
 }
 
+/**
+ * in this function there is a check of the number without prefix
+ */
 fun isValidText(number: String): Boolean {
     return (number.length == 10) && number.isNotEmpty() && number.matches(Regex("[0-9]+"))
 }

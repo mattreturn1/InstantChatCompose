@@ -38,7 +38,10 @@ import androidx.compose.ui.unit.sp
 import com.example.chatto.domain.vo.DbNumber
 import com.example.chatto.ui.utils.formatter
 
-
+/**
+ * a chat item composed by a Card and all information about the chat:
+ * the phone number, the avatar, the creation data and trash icon
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ChatItem(
