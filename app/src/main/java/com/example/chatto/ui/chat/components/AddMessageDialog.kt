@@ -27,7 +27,11 @@ import com.example.chatto.domain.vo.DbNumber
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
+/**
+ * a dialog to insert a new message in MessageItemsList, a Card composed by one OutlinedTextField
+ * to insert the message to send and two buttons, one to Cancel the operation and
+ * the other to Send the message
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MessageDialogView(
@@ -72,7 +76,12 @@ fun MessageDialogView(
                     ) {
                         Text(text = "Cancel")
                     }
-
+                    /**
+                     * when the user send a new message to the chat recipient
+                     * it's created a new object DbMessage,
+                     * with the same chatId in the chat it belongs to
+                     * the button is enabled only if the message text is not empty
+                     */
                     OutlinedButton(
                         onClick = {
                             onDismiss()

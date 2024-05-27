@@ -18,7 +18,12 @@ import com.example.chatto.domain.vo.ChatWithMessages
 import com.example.chatto.domain.vo.DbMessage
 import com.example.chatto.domain.vo.DbNumber
 
-
+/**
+ * a message items list to contain all MessageItems created, it manages:
+ * -the position of messages in the screen, that is the user's messages are disposed to the start
+ * of the screen while the recipient's messages are disposed to the end,
+ * -the update of selection state of all message items
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

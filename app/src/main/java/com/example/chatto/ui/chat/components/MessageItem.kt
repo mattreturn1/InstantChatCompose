@@ -25,7 +25,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.chatto.ui.utils.formatter
 
-
+/**
+ * a message item composed by a Card and all information about the message:
+ * the text, the creation data, the state if is selected and the state if it was sent by the user
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MessageItem(
