@@ -1,4 +1,4 @@
-package com.example.chatto.ui
+package com.example.chatto.ui.dispatcher
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,12 +8,13 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
+
 /**
  * the dispatcherViewModel annotated with @HiltViewModel manages the login state
  */
 @HiltViewModel
 class DispatcherViewModel @Inject constructor(
-    private val profileRepository: ProfileRepository
+    profileRepository: ProfileRepository
 ) : ViewModel() {
 
     private val profile = profileRepository.getDbProfile()

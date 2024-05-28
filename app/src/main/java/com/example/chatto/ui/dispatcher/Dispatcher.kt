@@ -1,4 +1,4 @@
-package com.example.chatto.ui
+package com.example.chatto.ui.dispatcher
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
