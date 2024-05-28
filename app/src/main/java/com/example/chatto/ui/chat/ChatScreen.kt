@@ -46,7 +46,14 @@ import com.example.chatto.ui.login.LoginViewModel
 import com.example.chatto.ui.utils.FakeMessage
 import kotlinx.coroutines.launch
 
-
+/**
+ * this Screen contains the Chat user interface whit all messages belong to the selected chat, which consist of
+ * a Scaffold with a TopAppBar with the chat recipient number and a back arrow to return to HomeScreen,
+ * a floatingActionButton to insert a new message, this button invokes a MessageDialogView to insert
+ * the text of the message and a MessageList which contains all messages exchanged order by
+ * creation date (the most recent on bottom), if the user long click on a message item it will be
+ * selected and it will appear on the TopAppBar a SelectionTopAppBar
+ */
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,6 +69,9 @@ fun ChatScreen(
     val openAlertDialog = rememberSaveable { mutableStateOf(false) }
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
 
+    /**
+     * a flag to coordinate the fake generator response
+     */
     val sent = remember { mutableStateOf(false) }
 
     val isInSelectionMode = chatViewModel.isInSelectionMode.value
@@ -70,6 +80,10 @@ fun ChatScreen(
     val profile by loginViewModel.profile.collectAsState(initial = emptyList())
     val myPrefix = profile.firstOrNull()?.number?.prefix
     val myNumber = profile.firstOrNull()?.number?.number
+
+    /**
+     * for handling presses of the system back button
+     */
     BackHandler(
         enabled = isInSelectionMode,
     ) {
@@ -77,6 +91,9 @@ fun ChatScreen(
         selectedItems.clear()
     }
 
+    /**
+     * to change the selectionMode value in the case that there aren't selected messages
+     */
     LaunchedEffect(
         key1 = isInSelectionMode,
         key2 = selectedItems.size,
@@ -176,7 +193,11 @@ fun ChatScreen(
     }
 }
 
-
+/**
+ * the selection top app bar appear only when there is at lest one message selected, it shows a cancel
+ * button to exit from selection mode, the number of messages to delete and the button to delete
+ * the selected messages
+ */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SelectionModeTopAppBar(
