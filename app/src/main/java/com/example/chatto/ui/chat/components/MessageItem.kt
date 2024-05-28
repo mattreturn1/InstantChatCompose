@@ -80,8 +80,6 @@ fun MessageItem(
                                 fontStyle = FontStyle.Normal,
                                 fontWeight = FontWeight.W400
                             ),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
                             text = messageText,
                             color = MaterialTheme.colorScheme.onPrimaryContainer
                         )

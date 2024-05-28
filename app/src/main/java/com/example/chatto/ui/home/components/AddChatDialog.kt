@@ -86,7 +86,7 @@ fun ChatDialogView(
                     modifier = Modifier.padding(8.dp),
                     label = { Text("Cell-Number") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                    isError = !isValidText(number) || number == myProfileNumber.number
+                    isError = !isValidText(number)
                 )
                 Row {
                     OutlinedButton(
@@ -116,12 +116,12 @@ fun ChatDialogView(
                             onAdd(
                                 DbChat(
                                     0, DbNumber(prefix, number), date,
-                                    when (Random.nextInt(0, 3)) {
-                                        0 -> R.drawable.avatar3
-                                        1 -> R.drawable.avatar1
-                                        else -> {
-                                            R.drawable.avatar2
-                                        }
+                                    when (Random.nextInt(0, 5)) {
+                                        0 -> R.drawable.avatar1
+                                        1 -> R.drawable.avatar2
+                                        2 -> R.drawable.avatar3
+                                        3 -> R.drawable.avatar4
+                                        else -> R.drawable.avatar5
                                     },
                                 )
                             )
