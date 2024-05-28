@@ -76,8 +76,8 @@ fun ChatItem(
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Box {
 
+                    Box {
                         Image(
                             modifier = Modifier
                                 .size(50.dp)
@@ -123,6 +123,7 @@ fun ChatItem(
         }
     }
 }
+
 
 
 
