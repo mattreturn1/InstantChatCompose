@@ -17,14 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -38,7 +36,6 @@ import com.example.chatto.domain.vo.DbProfile
 import com.example.chatto.domain.vo.ValidPrefix
 import com.example.chatto.ui.home.components.isValidText
 import com.example.chatto.ui.login.components.MainCover
-import com.example.chatto.ui.utils.PreferencesManager
 import kotlinx.coroutines.launch
 
 /**
@@ -53,14 +50,9 @@ fun LoginScreen(
     loginViewModel: LoginViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-
     var number by rememberSaveable { mutableStateOf("") }
     var prefix by rememberSaveable { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
-
-    val context = LocalContext.current
-    val preferencesManager = remember { PreferencesManager(context) }
-    val data = remember { mutableStateOf(preferencesManager.getData("LOGGED", "")) }
 
     Column(
         Modifier.fillMaxWidth(),
@@ -132,9 +124,8 @@ fun LoginScreen(
                 )
                 /**
                  * when the user click the button a coroutine will be launched to add
-                 * a new user DbProfile in the database, then in preferences file there will be
-                 * a user-logged value for the next access to the app, then the navigation controller
-                 * will return to the dispatcher
+                 * a new user DbProfile in the database, then the navigation controller
+                 * will navigate to HomeScreen
                  */
                 OutlinedButton(
                     modifier = Modifier
@@ -142,12 +133,8 @@ fun LoginScreen(
                     onClick = {
                         coroutineScope.launch {
                             loginViewModel.addProfile(DbProfile(0, DbNumber(prefix, number)))
-
-                            preferencesManager.saveData("LOGGED", "user-logged")
-                            data.value = "user-logged"
-
                         }
-                        navController.popBackStack("dispatcher", inclusive = true)
+                        navController.navigate("home") { popUpTo(0) }
                     },
                     colors = ButtonDefaults.outlinedButtonColors(
                         containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
