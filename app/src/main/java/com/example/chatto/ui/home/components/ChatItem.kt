@@ -113,6 +113,7 @@ fun ChatItem(
                         )
                     }
                     IconButton(
+                        modifier = Modifier.padding(end = 50.dp),
                         onClick = onClose,
                         colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.secondary)
                     ) {
