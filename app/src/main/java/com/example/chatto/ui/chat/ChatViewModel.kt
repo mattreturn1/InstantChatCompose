@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
- * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat objects
+ * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat entities
  */
 @HiltViewModel
 class ChatViewModel @Inject constructor(
@@ -39,10 +39,11 @@ class ChatViewModel @Inject constructor(
     /**
      * to get the chat with its all messages specified by its id
      */
-    val messageList = GenericDataMap { id ->
+    private val _messageList = GenericDataMap { id ->
         chatRepository.getChatWithMessages(id)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), emptyList())
     }
+    val messageList = _messageList
 
     suspend fun addMessage(message: DbMessage) {
         viewModelScope.launch {

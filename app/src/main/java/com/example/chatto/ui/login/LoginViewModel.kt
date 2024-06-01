@@ -18,7 +18,8 @@ class LoginViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
 ) : ViewModel() {
 
-    val profile = profileRepository.getDbProfile()
+    private val _profile = profileRepository.getDbProfile()
+    val profile = _profile
 
     suspend fun addProfile(profile: DbProfile) {
         viewModelScope.launch {

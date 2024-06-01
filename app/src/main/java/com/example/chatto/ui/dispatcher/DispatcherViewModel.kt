@@ -17,9 +17,9 @@ class DispatcherViewModel @Inject constructor(
     profileRepository: ProfileRepository
 ) : ViewModel() {
 
-    private val profile = profileRepository.getDbProfile()
+    private val login = profileRepository.getDbProfile()
 
-    val state = profile.map { profile ->
+    val state = login.map { profile ->
         if (profile.isEmpty()) {
             LoginState.NOTLOGGED
         } else {

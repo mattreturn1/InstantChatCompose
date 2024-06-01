@@ -26,7 +26,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -47,36 +46,49 @@ import com.example.chatto.ui.utils.FakeMessage
 import kotlinx.coroutines.launch
 
 /**
- * this Screen contains the Chat user interface whit all messages belong to the selected chat, which consist of
- * a Scaffold with a TopAppBar with the chat recipient number and a back arrow to return to HomeScreen,
- * a floatingActionButton to insert a new message, this button invokes a MessageDialogView to insert
- * the text of the message and a MessageList which contains all messages exchanged order by
- * creation date (the most recent on bottom), if the user long click on a message item it will be
- * selected and it will appear on the TopAppBar a SelectionTopAppBar
+ * this Screen contains the Chat user interface whit all messages belong to the selected chat,
+ * which consist of a Scaffold with a TopAppBar with the chat recipient number and a back arrow
+ * to return to HomeScreen, a floatingActionButton to insert a new message,
+ * this button invokes a MessageDialogView to insert the text of the message and
+ * a MessageList which contains all messages exchanged order by creation date (the most recent on bottom),
+ * if the user long click on a message item it will be selected and it will appear on the TopAppBar
+ * a SelectionTopAppBar
  */
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen(
     id: String,
-    prefix: String,
-    number: String,
     navController: NavHostController,
     chatViewModel: ChatViewModel = hiltViewModel(),
     loginViewModel: LoginViewModel = hiltViewModel()
 
-    ) {
+) {
+
     val openAlertDialog = rememberSaveable { mutableStateOf(false) }
+
     val messagesListState by chatViewModel.messageList[id].collectAsState(initial = emptyList())
+
+    /**
+     * recipient's prefix and number
+     */
+    val prefix = messagesListState.firstOrNull()?.chat?.number?.prefix
+    val number = messagesListState.firstOrNull()?.chat?.number?.number
 
     /**
      * a flag to coordinate the fake generator response
      */
-    val sent = remember { mutableStateOf(false) }
+    val sent = rememberSaveable { mutableStateOf(false) }
 
+    /**
+     * a flag to coordinate the selection mode
+     */
     val isInSelectionMode = chatViewModel.isInSelectionMode.value
     val selectedItems = chatViewModel.selectedItems
 
+    /**
+     * user's profile
+     */
     val profile by loginViewModel.profile.collectAsState(initial = emptyList())
     val myPrefix = profile.firstOrNull()?.number?.prefix
     val myNumber = profile.firstOrNull()?.number?.number
@@ -183,7 +195,7 @@ fun ChatScreen(
                 }
             }
             MessageItemsList(
-                myProfileNumber = DbNumber(myPrefix,myNumber),
+                myProfileNumber = DbNumber(myPrefix, myNumber),
                 isInSelectionMode = isInSelectionMode,
                 updateSelectionMode = { chatViewModel.updateSelectionMode(it) },
                 selectedItems = selectedItems,
@@ -194,9 +206,10 @@ fun ChatScreen(
 }
 
 /**
- * the selection top app bar appear only when there is at lest one message selected, it shows a cancel
- * button to exit from selection mode, the number of messages to delete and the button to delete
- * the selected messages
+ * the selection top app bar appear only when there is at least one message selected, it shows:
+ * - a cancel button to exit from selection mode,
+ * - the number of messages to delete,
+ * - the button to delete the selected messages
  */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)

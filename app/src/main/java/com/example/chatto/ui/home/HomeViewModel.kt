@@ -11,14 +11,15 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
- * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat objects
+ * the loginViewModel annotated with @HiltViewModel manages the operation on DbChat entities
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val chatRepository: ChatRepository
 ) : ViewModel() {
 
-    val chatList = chatRepository.getAllChat()
+    private val _chatList = chatRepository.getAllChat()
+    val chatList = _chatList
 
     suspend fun addChat(chat: DbChat) {
         viewModelScope.launch {

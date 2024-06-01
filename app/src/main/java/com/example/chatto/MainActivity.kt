@@ -25,8 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
  *   to the app) or not,
  * - a login route
  * - a home route
- * - a chat route with argument id to identify the correct chat and arguments prefix and number,
- *   which must have passed to Chat activity
+ * - a chat route with argument id to identify the correct chat to open
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -45,18 +44,12 @@ class MainActivity : ComponentActivity() {
                         composable(route = "home") {
                             HomeScreen(navController = navController)
                         }
-                        composable(route = "chat/{id}/{prefix}/{number}") { backStackEntry ->
+                        composable(route = "chat/{id}") { backStackEntry ->
                             val chatId = backStackEntry.arguments?.getString("id")
-                                ?: throw IllegalStateException("missing id from arguments")
-                            val prefix = backStackEntry.arguments?.getString("prefix")
-                                ?: throw IllegalStateException("missing id from arguments")
-                            val number = backStackEntry.arguments?.getString("number")
                                 ?: throw IllegalStateException("missing id from arguments")
                             ChatScreen(
                                 navController = navController,
-                                id = chatId,
-                                prefix = prefix,
-                                number = number
+                                id = chatId
                             )
                         }
                         composable(route = "login") {
