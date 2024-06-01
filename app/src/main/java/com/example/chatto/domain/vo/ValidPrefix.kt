@@ -1,7 +1,7 @@
 package com.example.chatto.domain.vo
 
 /**
- * Valid prefix taken from CountryCode.org
+ * Valid telephone number prefixes taken from CountryCode.org
  */
 val ValidPrefix = listOf(
     "93",

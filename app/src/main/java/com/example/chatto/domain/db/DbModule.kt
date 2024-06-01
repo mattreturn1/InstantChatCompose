@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 /**
  * An object DbModule which provides two function:
- * database: return the instance of a @Singleton database
+ * database: provides an instance of a @Singleton database
  * dao: for using the Dao's interface
  */
 @Module

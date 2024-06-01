@@ -75,7 +75,7 @@ interface Dao {
     suspend fun deleteDbProfile(profile: DbProfile)
 
     /**
-     * to select all profile in the database
+     * to select the profile in the database
      */
     @Query("SELECT * FROM profile")
     fun getDbProfile(): Flow<List<DbProfile>>
