@@ -52,7 +52,6 @@ fun LoginScreen(
 ) {
     var number by rememberSaveable { mutableStateOf("") }
     var prefix by rememberSaveable { mutableStateOf("") }
-    val coroutineScope = rememberCoroutineScope()
 
     Column(
         Modifier.fillMaxWidth(),
@@ -127,6 +126,8 @@ fun LoginScreen(
                  * a new user DbProfile in the database, then the navigation controller
                  * will navigate to HomeScreen
                  */
+                val coroutineScope = rememberCoroutineScope()
+
                 OutlinedButton(
                     modifier = Modifier
                         .padding(8.dp),

@@ -2,6 +2,8 @@ package com.example.chatto.domain.vo
 
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
@@ -31,14 +33,22 @@ data class DbChat(
 )
 
 /**
- * Entity Message for Room Database
+ * Entity Message for Room Database with CASCADE policy for delete operations
  * @param messageId the entity message id
  * @param chatId the chat id this message belongs to
  * @param date the creation date of the message
  * @param sender the owner of the message
  * @param text the text of the message
  */
-@Entity(tableName = "message")
+@Entity(
+    tableName = "message",
+    foreignKeys = [ForeignKey(
+        entity = DbChat::class,
+        parentColumns = ["id"],
+        childColumns = ["chatId"],
+        onDelete = CASCADE
+    )]
+)
 data class DbMessage(
     @PrimaryKey(true) val messageId: Int = 0,
     val chatId: Int,
