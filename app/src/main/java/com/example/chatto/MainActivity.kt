@@ -20,12 +20,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * in class MainActivity there is a NavController which controls the navigation between app's activities
- * in particular it's declared a navigation graph composed by:
- * - a dispatcher route, to decide if show the login screen or not, if this is the user's first access to the app
+ * in particular it declares a navigation graph composed by:
+ * - a dispatcher route, to decide if show the login screen (if this is the user's first access
+ *   to the app) or not,
  * - a login route
  * - a home route
- * - a chat route with argument id to identify the correct chat
- * and arguments prefix and number, which must have passed to Chat activity
+ * - a chat route with argument id to identify the correct chat and arguments prefix and number,
+ *   which must have passed to Chat activity
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
