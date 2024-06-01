@@ -67,6 +67,5 @@ data class ChatWithMessages(
 @Entity(tableName = "profile")
 data class DbProfile(
     @PrimaryKey(true) val id: Int = 0,
-    @Embedded val number: DbNumber,
-
-    )
+    @Embedded val number: DbNumber
+)
