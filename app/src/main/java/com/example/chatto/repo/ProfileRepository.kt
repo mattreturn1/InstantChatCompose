@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * a repository interface to manage DbProfile objects
+ * a repository interface to manage DbProfile entities
  */
 interface ProfileRepository {
 
@@ -33,7 +33,7 @@ abstract class ProfileModule {
     abstract fun provideTaskRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
 }
 /**
- * a repository implementation to manage DbProfile objects
+ * a repository implementation to manage DbProfile entities
  */
 @Singleton
 class ProfileRepositoryImpl @Inject constructor(

@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * a repository interface to manage DbChat and DbMessage objects
+ * a repository interface to manage DbChat and DbMessage entities
  */
 interface ChatRepository {
 
@@ -42,7 +42,7 @@ abstract class TasksModule {
     abstract fun provideTaskRepository(chatRepositoryImpl: ChatRepositoryImpl): ChatRepository
 }
 /**
- * a repository implementation to manage DbChat and DbMessage objects
+ * a repository implementation to manage DbChat and DbMessage entities
  */
 @Singleton
 class ChatRepositoryImpl @Inject constructor(
