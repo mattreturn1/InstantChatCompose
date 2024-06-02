@@ -22,6 +22,7 @@ interface ProfileRepository {
     suspend fun deleteDbProfile(dbProfile: DbProfile)
 
 }
+
 /**
  * this class will provide a @Singleton implementation of a ProfileRepository
  */
@@ -32,6 +33,7 @@ abstract class ProfileModule {
     @Singleton
     abstract fun provideTaskRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
 }
+
 /**
  * a repository implementation to manage DbProfile entities
  */

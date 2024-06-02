@@ -41,6 +41,7 @@ abstract class TasksModule {
     @Singleton
     abstract fun provideTaskRepository(chatRepositoryImpl: ChatRepositoryImpl): ChatRepository
 }
+
 /**
  * a repository implementation to manage DbChat and DbMessage entities
  */
@@ -55,6 +56,7 @@ class ChatRepositoryImpl @Inject constructor(
 
     override fun getChatWithMessages(id: String): Flow<List<ChatWithMessages>> =
         dao.getChatWithMessages(id)
+
     override suspend fun deleteMessage(dbMessage: DbMessage) = dao.deleteMessage(dbMessage)
     override suspend fun insertMessage(dbMessage: DbMessage) = dao.insertMessage(dbMessage)
 

@@ -20,6 +20,7 @@ fun formatter(date: String): String {
     }
     return date.substring(0, 10)
 }
+
 /**
  * a generic class to map a string in a Flow
  * @param provider a lambda function to map a String object and a Flow<T>

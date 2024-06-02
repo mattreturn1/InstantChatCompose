@@ -22,9 +22,11 @@ fun Dispatcher(
             LoginState.LOADING -> {
 
             }
+
             LoginState.LOGGED -> {
                 navController.navigate("home") { popUpTo(0) }
             }
+
             LoginState.NOTLOGGED -> {
                 navController.navigate("login") { popUpTo(0) }
             }
