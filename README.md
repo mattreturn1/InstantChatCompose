@@ -1,23 +1,44 @@
-# Progetto di Programmazione di Sistemi Embedded 6CFU <br> App di Messaggistica Istantanea - CHATTO
-## di Mattia Cozza <br> matricola: 2032576
-<img src="/app/src/main/ic_launcher-playstore.png" alt="drawing" width="200"/>
+## Instant Messaging App - CHATTO
 
-### Specifiche dispositivo utilizzato 
-<p>Nome Modello: Samsung Galaxy A50 <br>
-Codice Modello: SM-A505FN/DS <br>
-Versione Android: 11
-</p>
+<img src="/app/src/main/ic_launcher-playstore.png" alt="Chatto App Logo" width="200"/>
 
-### Librerie utilizzate
-<p> In questo progetto ho utilizzato il framework Android Jetpack Compose per l'implementazione dell'interfaccia utente e la libreria HILT per l'iniezione delle dipendenze </p>
+---
 
-### Scelte implementative
-<p> In aggiunta ai requisiti minimi del progetto ho implementato una funzione di Login, la quale permette all'utente d'inserire il suo numero di telefono al primo avvio dell'app. <br> 
-Per gestire la corretta navigazione ho implementato un componente chiamato Dispatcher che implementa una sorta di navigazione condizionata, ovvero: <br>
-- nel caso l'utente abbia inserito correttamente il numero, esso viene salvato nel database locale come profilo e l'utente viene così indirizzato alla schermata delle chat, garantendo così che al prossimo avvio dell'app non si riapra la schermata di Login <br>
-- in alternativa l'utente rimane alla schermata Login per inserire un numero di telefono valido. <br>
-Tutta la navigazione all'interno dell'app è gestita con il Navigation component di Jetpack Compose. <br>
-Inoltre le chat sono dotate di un'immagine avatar casuale che simuli quella di un vero destinatario dei messaggi. <br>
-La generazione dei messaggi è gestita come scelta casuale da una lista di messaggi. <br>
-</p>
+## 📱 Device Specifications
+- **Model Name:** Samsung Galaxy A50  
+- **Model Code:** SM-A505FN/DS  
+- **Android Version:** 11  
 
+---
+
+## 🛠️ Libraries and Frameworks
+- **UI Framework:** [Android Jetpack Compose](https://developer.android.com/jetpack/compose)  
+- **Dependency Injection:** [HILT](https://developer.android.com/training/dependency-injection/hilt-android)  
+
+---
+
+## 💡 Implementation Highlights
+In addition to the minimum project requirements, the app includes a **Login feature**, which allows users to enter their phone number at the first launch. Key implementation details:  
+
+- **Conditional Navigation:** A custom `Dispatcher` component handles navigation logic:  
+  - If the user enters a valid phone number, it is saved in the local database as a user profile, and the app navigates to the **Chat screen**. On subsequent launches, the user bypasses the Login screen.  
+  - If the phone number is invalid or missing, the user remains on the Login screen until a valid number is provided.  
+
+- **Navigation Management:** All app navigation is implemented using Jetpack Compose’s **Navigation Component**.  
+
+- **Chat Simulation:**  
+  - Each chat is assigned a random avatar to simulate a real conversation partner.  
+  - Messages are generated randomly from a predefined list to mimic a realistic chat experience.  
+
+---
+
+## ⚙️ Features
+- User authentication via phone number  
+- Persistent user profile stored locally  
+- Dynamic and condition-based navigation  
+- Simulated chat conversations with avatars and randomized messages  
+
+---
+
+## 📂 Project Structure
+The project follows a modular architecture for easier maintenance and scalability, leveraging **Jetpack Compose** components and **HILT** for clean dependency management.
